@@ -44,6 +44,22 @@ body::after{
 
 /* Ad placements remain hidden until an approved provider's real ad code is configured. */
 .ad-placement{padding:12px 20px 30px}.ad-slot,.timer-ad{border:1px solid #563824;border-radius:16px;background:#141113;padding:16px;text-align:center;min-height:100px}.ad-label{display:block;color:#b8a79d;font-size:12px;margin-bottom:6px}.timer-ad{min-height:74px;margin:14px auto 0;max-width:360px}.timer-ad[hidden],.ad-placement[hidden]{display:none!important}
+
+/* Scroll-linked parallax: orange curves shift with the page, without looping motion. */
+body::before{
+ animation:none!important;
+ transform:translate3d(0,calc(var(--parallax-y, 0px) * -1),0) rotate(-9deg);
+ will-change:transform;
+}
+body::after{
+ animation:none!important;
+ transform:translate3d(0,var(--parallax-y, 0px),0) rotate(11deg);
+ will-change:transform;
+}
+@media(prefers-reduced-motion:reduce){
+ body::before{transform:rotate(-9deg)!important;will-change:auto}
+ body::after{transform:rotate(11deg)!important;will-change:auto}
+}
 </style></head>
 <body><header><nav class="nav"><a class="brand" href="#home"><img src="omar-store-os-4k%281%29.webp" alt="شعار OS" class="brand-icon"> OMAR STORE</a><div class="links"><a href="#community">المجتمع</a><a href="#gallery">الصور</a><a href="#updates">التحديثات</a><a href="#help">المساعدة</a><a href="#download">التحميل بالنهاية ↓</a></div></nav></header>
 <div class="news" role="status" id="news">أهلاً بك في OMAR STORE — تابع آخر الأخبار والتحديثات عبر منصاتنا الرسمية.</div>
@@ -68,6 +84,22 @@ body::after{
 (function(){
 'use strict';
 document.getElementById('year').textContent=new Date().getFullYear();
+
+/* Parallax follows actual scroll movement; low amplitude to avoid dizziness. */
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+let parallaxPending=false;
+function updateScrollParallax(){
+ parallaxPending=false;
+ if(reducedMotion.matches){document.body.style.setProperty('--parallax-y','0px');return;}
+ const y=Math.max(-100,Math.min(100,window.scrollY*0.11));
+ document.body.style.setProperty('--parallax-y',y.toFixed(1)+'px');
+}
+window.addEventListener('scroll',()=>{
+ if(!parallaxPending){parallaxPending=true;requestAnimationFrame(updateScrollParallax);}
+},{passive:true});
+reducedMotion.addEventListener?.('change',updateScrollParallax);
+updateScrollParallax();
+
 const reviewStars=[...document.querySelectorAll('.star-btn')];let selectedRating=0;
 reviewStars.forEach(btn=>btn.addEventListener('click',()=>{selectedRating=Number(btn.dataset.star);reviewStars.forEach(b=>{const active=Number(b.dataset.star)<=selectedRating;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(Number(b.dataset.star)===selectedRating));});}));
 document.getElementById('reviewForm').addEventListener('submit',e=>{e.preventDefault();const status=document.getElementById('reviewStatus');if(!selectedRating){status.textContent='اختار عدد النجوم أولاً.';return;}status.textContent='التقييمات غير متاحة للنشر حالياً. نحتاج تفعيل التخزين الآمن قبل قبول الآراء؛ ما تم حفظ أو نشر تقييمك.';});
