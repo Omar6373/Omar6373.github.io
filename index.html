@@ -76,11 +76,31 @@ body>.download-modal{z-index:99}
 .card,.review,details,.store-preview-card{background-color:rgba(17,17,20,.92)}
 @media(max-width:750px){#storeDepth{inset:-12vh -14vw}#storeCenterLogo{width:min(40vw,150px);opacity:.10}}
 @media(prefers-reduced-motion:reduce){#storeDepth{transform:none!important;will-change:auto}}
+
+/* Quiet charcoal-and-burnt-orange animated smoke, without metallic geometry. */
+body{background:#050506!important}
+#storeDepth{inset:0!important;opacity:1!important;transform:none!important;overflow:hidden;will-change:auto}
+#storeDepth::before{inset:-28%!important;background:
+ radial-gradient(ellipse 38% 25% at 22% 24%,rgba(88,32,12,.20),transparent 78%),
+ radial-gradient(ellipse 37% 29% at 79% 60%,rgba(106,38,12,.18),transparent 82%),
+ radial-gradient(ellipse 32% 36% at 38% 85%,rgba(64,26,13,.14),transparent 85%)!important;
+ filter:blur(72px);animation:storeSmokeFloat 27s ease-in-out infinite alternate;will-change:transform}
+#storeDepth::after{inset:-24%!important;background:
+ radial-gradient(ellipse 32% 21% at 64% 18%,rgba(82,34,17,.14),transparent 80%),
+ radial-gradient(ellipse 44% 23% at 30% 72%,rgba(110,39,11,.12),transparent 83%)!important;
+ filter:blur(85px);animation:storeSmokeFloat2 33s ease-in-out infinite alternate;will-change:transform}
+#storeCenterLogo{display:none!important}
+.hero-main-logo img{border-radius:0!important;box-shadow:none!important;filter:none!important;animation:storeLogoBreath 4.8s ease-in-out infinite!important}
+.brand-icon{border-radius:5px!important;box-shadow:none!important;animation:none!important;object-fit:contain!important}
+@keyframes storeLogoBreath{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.035);opacity:.97}}
+@keyframes storeSmokeFloat{0%{transform:translate3d(-4%,-2%,0) rotate(-4deg) scale(1)}100%{transform:translate3d(5%,4%,0) rotate(5deg) scale(1.1)}}
+@keyframes storeSmokeFloat2{0%{transform:translate3d(5%,2%,0) rotate(4deg)}100%{transform:translate3d(-5%,-4%,0) rotate(-5deg)}}
+@media(prefers-reduced-motion:reduce){#storeDepth::before,#storeDepth::after,.hero-main-logo img{animation:none!important;transform:none!important}}
 </style></head>
-<body><div id="storeDepth" aria-hidden="true"></div><div id="storeCenterLogo" aria-hidden="true"><img src="omar-store-os-4k%281%29.webp" alt=""></div><header><nav class="nav"><a class="brand" href="#home"><img src="omar-store-os-4k%281%29.webp" alt="شعار OS" class="brand-icon"> OMAR STORE</a><div class="links"><a href="#community">المجتمع</a><a href="#gallery">الصور</a><a href="#updates">التحديثات</a><a href="#help">المساعدة</a><a href="#download">التحميل بالنهاية ↓</a></div></nav></header>
+<body><div id="storeDepth" aria-hidden="true"></div><div id="storeCenterLogo" aria-hidden="true"><img src="omar-store-os-4k%281%29.webp" alt=""></div><header><nav class="nav"><a class="brand" href="#home"><img src="file_00000000753c8210b87070874209df00.png" alt="شعار OS" class="brand-icon"> OMAR STORE</a><div class="links"><a href="#community">المجتمع</a><a href="#gallery">الصور</a><a href="#updates">التحديثات</a><a href="#help">المساعدة</a><a href="#download">التحميل بالنهاية ↓</a></div></nav></header>
 <div class="news" role="status" id="news">أهلاً بك في OMAR STORE — تابع آخر الأخبار والتحديثات عبر منصاتنا الرسمية.</div>
 <main>
-<section class="wrap hero hero-rebuilt" id="home"><div class="hero-content"><div class="hero-main-logo"><img src="omar-store-os-4k%281%29.webp" alt="شعار OS الرسمي"></div><span class="eyebrow">من تطوير Omar Ayad • حصرياً لأندرويد</span><h1>متجرك. عالمك.<br><span>OMAR STORE</span></h1><p>مرحباً بك في الموقع الرسمي لـ OMAR STORE، من تطوير <b style="color:#ff9c5b">Omar Ayad</b>. متجر أندرويد يجمع الألعاب والبرامج في مكان واحد، ويتيح لك استكشاف المحتوى بالصور والتفاصيل والتقييمات، مع مركز للدعم الفني والتحديثات.</p><div class="buttons"><a class="btn primary" href="#gallery">اكتشف المتجر ↓</a><a class="btn" href="#community">مجتمع OMAR STORE</a></div><p class="small">شاهد لمحة عن المتجر أولاً، ثم انتقل إلى التحميل في نهاية الصفحة.</p></div></section>
+<section class="wrap hero hero-rebuilt" id="home"><div class="hero-content"><div class="hero-main-logo"><img src="file_00000000753c8210b87070874209df00.png" alt="شعار OS الرسمي"></div><span class="eyebrow">من تطوير Omar Ayad • حصرياً لأندرويد</span><h1>متجرك. عالمك.<br><span>OMAR STORE</span></h1><p>مرحباً بك في الموقع الرسمي لـ OMAR STORE، من تطوير <b style="color:#ff9c5b">Omar Ayad</b>. متجر أندرويد يجمع الألعاب والبرامج في مكان واحد، ويتيح لك استكشاف المحتوى بالصور والتفاصيل والتقييمات، مع مركز للدعم الفني والتحديثات.</p><div class="buttons"><a class="btn primary" href="#gallery">اكتشف المتجر ↓</a><a class="btn" href="#community">مجتمع OMAR STORE</a></div><p class="small">شاهد لمحة عن المتجر أولاً، ثم انتقل إلى التحميل في نهاية الصفحة.</p></div></section>
 <section class="wrap" id="statistics" hidden><div class="stats"><div class="stat"><b id="downloads">—</b><span>تحميلات إصدار GitHub المتاحة</span></div><div class="stat"><b id="version">—</b><span>آخر إصدار منشور</span></div><div class="stat"><b id="updated">—</b><span>تاريخ آخر إصدار</span></div></div><p class="small" id="statsInfo"></p></section>
 
 <section class="wrap section preview-section" id="gallery"><div class="preview-heading"><span class="eyebrow">اكتشف التجربة قبل التحميل</span><h2>لمحة عن المتجر</h2><p class="lead">شاهد الواجهة الرسمية لـ OMAR STORE، وتعرّف على طريقة استعراض الألعاب والبرامج والتقييمات ومركز الدعم الفني.</p></div><div class="store-preview"><div class="store-preview-card welcome"><img class="preview-screenshot" src="Screenshot_20261121-205257.png" alt="لقطة شاشة واجهة الترحيب الأصلية" loading="lazy"><div class="preview-caption"><strong>واجهة الترحيب</strong><span>تصميم المتجر الرسمي بالأسود والبرتقالي</span></div></div><div class="store-preview-card"><img class="preview-screenshot" src="Screenshot_20261121-205304.png" alt="لقطة شاشة قائمة الألعاب والبرامج الأصلية" loading="lazy"><div class="preview-caption"><strong>الألعاب والبرامج</strong><span>عرض المحتوى ببطاقات واضحة</span></div></div><div class="store-preview-card"><img class="preview-screenshot" src="Screenshot_20261121-205315.png" alt="لقطة شاشة الدعم الفني الأصلية" loading="lazy"><div class="preview-caption"><strong>الدعم الفني</strong><span>إرسال الاستفسارات من داخل المتجر</span></div></div><div class="store-preview-card"><img class="preview-screenshot" src="Screenshot_20261121-205321.png" alt="لقطة شاشة التقييمات والتعليقات الأصلية" loading="lazy"><div class="preview-caption"><strong>التقييمات والتعليقات</strong><span>مشاركة الرأي داخل التطبيق</span></div></div></div><p class="small preview-disclaimer">صور أصلية من داخل تطبيق OMAR STORE.</p></section>
