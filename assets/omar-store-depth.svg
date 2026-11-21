@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="base" x2="1" y2="1"><stop stop-color="#111317"/><stop offset=".52" stop-color="#050608"/><stop offset="1" stop-color="#141518"/></linearGradient>
+<linearGradient id="metal" x2=".9" y2="1"><stop stop-color="#34373c"/><stop offset=".32" stop-color="#1b1d22"/><stop offset=".66" stop-color="#090a0d"/><stop offset="1" stop-color="#24262a"/></linearGradient>
+<linearGradient id="ember" x2="1" y2=".6"><stop stop-color="#652009"/><stop offset=".43" stop-color="#ff7a20"/><stop offset=".65" stop-color="#a83a0d"/><stop offset="1" stop-color="#42160b"/></linearGradient>
+<linearGradient id="soft" x2="1" y2="1"><stop stop-color="#a64b18"/><stop offset=".5" stop-color="#ec6b17"/><stop offset="1" stop-color="#5a1e0d"/></linearGradient>
+<pattern id="mesh" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="2.4" fill="#3d2920" opacity=".34"/></pattern>
+</defs>
+<path fill="url(#base)" d="M0 0h900v1600H0z"/>
+<path fill="url(#metal)" stroke="#383a3e" stroke-width="3" d="M-220 -110C160 70 290 205 205 420S-70 780 125 1010s170 410-65 690H-220Z"/>
+<path fill="#07080a" stroke="#020304" stroke-width="28" d="M-80 -70C280 160 310 260 232 463S8 830 192 1052s119 370-70 600" />
+<path fill="none" stroke="url(#ember)" stroke-width="9" d="M-65 -60C272 170 293 260 214 463S-5 833 173 1055s120 355-74 590"/>
+<path fill="url(#metal)" stroke="#36383c" stroke-width="3" d="M610 -150C500 130 840 280 693 522S460 826 650 1070s320 340 245 680H1080V-150Z"/>
+<path fill="#070809" stroke="#020304" stroke-width="27" d="M690 -100C576 175 867 288 728 536S494 824 678 1080s279 360 200 620"/>
+<path fill="none" stroke="url(#soft)" stroke-width="8" d="M704 -90C595 183 881 290 745 542S516 826 695 1084s270 350 197 610"/>
+<path fill="#101215" stroke="#303237" stroke-width="3" d="M-90 1310C195 1145 330 1215 412 1025s-7-352 135-508S720 130 1040 42v240C786 377 722 502 629 663S645 1040 520 1232 205 1430-80 1535Z"/>
+<path fill="none" stroke="#050607" stroke-width="27" d="M-90 1373C215 1197 362 1270 454 1060S452 729 579 556 755 238 1030 150"/>
+<path fill="none" stroke="url(#ember)" stroke-width="7" d="M-90 1384C216 1209 373 1280 467 1068S467 735 592 565 767 249 1030 162"/>
+<path fill="url(#mesh)" opacity=".5" d="M0 0h900v1600H0z"/>
+<path fill="#0a0b0d" opacity=".62" d="M275 420h330v690H275z"/>
+<path fill="none" stroke="#323438" opacity=".45" stroke-width="2" d="M290 450l280 240-220 230 230 130M300 930l280-450"/>
+</svg>
