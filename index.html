@@ -115,6 +115,13 @@ body{background:#080707!important}
 .hero-rebuilt .hero-main-logo{width:100vw!important;max-width:700px!important;aspect-ratio:1!important;margin:0 auto -24px!important;position:relative;left:50%;transform:translateX(-50%)}
 .hero-rebuilt .hero-main-logo img{width:100%!important;height:100%!important;object-fit:contain!important}
 @media(max-width:750px){.hero-rebuilt .hero-main-logo{width:112vw!important;max-width:none!important;margin-bottom:-42px!important}}
+
+/* FIX: Enlarge only the visible emblem; never widen or shift the page. */
+html,body{max-width:100%;overflow-x:clip}
+.hero-rebuilt .hero-content{width:100%;max-width:780px;margin-inline:auto}
+.hero-rebuilt .hero-main-logo{position:relative!important;left:auto!important;right:auto!important;transform:none!important;width:100%!important;max-width:560px!important;aspect-ratio:1.3!important;margin:0 auto 12px!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.hero-rebuilt .hero-main-logo img{display:block!important;flex:none!important;width:142%!important;max-width:none!important;height:142%!important;object-fit:contain!important;animation:storeLogoBreath 4.8s ease-in-out infinite!important}
+@media(max-width:750px){.hero-rebuilt .hero-main-logo{width:100%!important;max-width:100%!important;aspect-ratio:1.22!important;margin:0 auto 10px!important}.hero-rebuilt .hero-main-logo img{width:145%!important;height:145%!important}}
 </style></head>
 <body><div id="storeDepth" aria-hidden="true"></div><div id="storeCenterLogo" aria-hidden="true"><img src="omar-store-os-4k%281%29.webp" alt=""></div><header><nav class="nav"><a class="brand" href="#home"><img src="file_00000000753c8210b87070874209df00.png" alt="شعار OS" class="brand-icon"> OMAR STORE</a><div class="links"><a href="#community">المجتمع</a><a href="#gallery">الصور</a><a href="#updates">التحديثات</a><a href="#help">المساعدة</a><a href="#download">التحميل بالنهاية ↓</a></div></nav></header>
 <div class="news" role="status" id="news">أهلاً بك في OMAR STORE — تابع آخر الأخبار والتحديثات عبر منصاتنا الرسمية.</div>
