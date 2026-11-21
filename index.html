@@ -60,8 +60,24 @@ body::after{
  body::before{transform:rotate(-9deg)!important;will-change:auto}
  body::after{transform:rotate(11deg)!important;will-change:auto}
 }
+
+/* OMAR STORE exclusive layered depth artwork: scrolling art, stationary OS insignia. */
+body{background:#060708;isolation:isolate}
+body::before,body::after{content:none!important;animation:none!important}
+#storeDepth{position:fixed;inset:-14vh -9vw;z-index:0;pointer-events:none;overflow:hidden;opacity:.88;transform:translate3d(0,var(--depth-shift,0px),0);will-change:transform}
+#storeDepth::before{content:"";position:absolute;inset:0;background:url("assets/omar-store-depth.svg") center center / cover no-repeat}
+#storeDepth::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,5,7,.25),transparent 25%,transparent 75%,rgba(4,5,7,.3)),linear-gradient(180deg,rgba(4,5,7,.12),transparent 25%,transparent 70%,rgba(4,5,7,.35))}
+#storeCenterLogo{position:fixed;left:50%;top:50%;width:min(31vw,180px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:0;opacity:.14;pointer-events:none;filter:grayscale(.2)}
+#storeCenterLogo img{display:block;width:100%;height:100%;object-fit:contain}
+body>header,body>.news,body>main,body>footer{position:relative;z-index:1}
+body>header{position:sticky}
+body>.download-modal{z-index:99}
+.hero-rebuilt .hero-content{position:relative;z-index:2}
+.card,.review,details,.store-preview-card{background-color:rgba(17,17,20,.92)}
+@media(max-width:750px){#storeDepth{inset:-12vh -14vw}#storeCenterLogo{width:min(40vw,150px);opacity:.10}}
+@media(prefers-reduced-motion:reduce){#storeDepth{transform:none!important;will-change:auto}}
 </style></head>
-<body><header><nav class="nav"><a class="brand" href="#home"><img src="omar-store-os-4k%281%29.webp" alt="شعار OS" class="brand-icon"> OMAR STORE</a><div class="links"><a href="#community">المجتمع</a><a href="#gallery">الصور</a><a href="#updates">التحديثات</a><a href="#help">المساعدة</a><a href="#download">التحميل بالنهاية ↓</a></div></nav></header>
+<body><div id="storeDepth" aria-hidden="true"></div><div id="storeCenterLogo" aria-hidden="true"><img src="omar-store-os-4k%281%29.webp" alt=""></div><header><nav class="nav"><a class="brand" href="#home"><img src="omar-store-os-4k%281%29.webp" alt="شعار OS" class="brand-icon"> OMAR STORE</a><div class="links"><a href="#community">المجتمع</a><a href="#gallery">الصور</a><a href="#updates">التحديثات</a><a href="#help">المساعدة</a><a href="#download">التحميل بالنهاية ↓</a></div></nav></header>
 <div class="news" role="status" id="news">أهلاً بك في OMAR STORE — تابع آخر الأخبار والتحديثات عبر منصاتنا الرسمية.</div>
 <main>
 <section class="wrap hero hero-rebuilt" id="home"><div class="hero-content"><div class="hero-main-logo"><img src="omar-store-os-4k%281%29.webp" alt="شعار OS الرسمي"></div><span class="eyebrow">من تطوير Omar Ayad • حصرياً لأندرويد</span><h1>متجرك. عالمك.<br><span>OMAR STORE</span></h1><p>مرحباً بك في الموقع الرسمي لـ OMAR STORE، من تطوير <b style="color:#ff9c5b">Omar Ayad</b>. متجر أندرويد يجمع الألعاب والبرامج في مكان واحد، ويتيح لك استكشاف المحتوى بالصور والتفاصيل والتقييمات، مع مركز للدعم الفني والتحديثات.</p><div class="buttons"><a class="btn primary" href="#gallery">اكتشف المتجر ↓</a><a class="btn" href="#community">مجتمع OMAR STORE</a></div><p class="small">شاهد لمحة عن المتجر أولاً، ثم انتقل إلى التحميل في نهاية الصفحة.</p></div></section>
@@ -85,18 +101,16 @@ body::after{
 'use strict';
 document.getElementById('year').textContent=new Date().getFullYear();
 
-/* Parallax follows actual scroll movement; low amplitude to avoid dizziness. */
+/* Scroll artwork at 30% page speed, keep center insignia stationary. */
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 let parallaxPending=false;
+const depth=document.getElementById('storeDepth');
 function updateScrollParallax(){
  parallaxPending=false;
- if(reducedMotion.matches){document.body.style.setProperty('--parallax-y','0px');return;}
- const y=Math.max(-100,Math.min(100,window.scrollY*0.11));
- document.body.style.setProperty('--parallax-y',y.toFixed(1)+'px');
+ const shift=reducedMotion.matches?0:Math.max(-260,Math.min(260,-window.scrollY*.30));
+ depth.style.setProperty('--depth-shift',shift.toFixed(1)+'px');
 }
-window.addEventListener('scroll',()=>{
- if(!parallaxPending){parallaxPending=true;requestAnimationFrame(updateScrollParallax);}
-},{passive:true});
+window.addEventListener('scroll',()=>{if(!parallaxPending){parallaxPending=true;requestAnimationFrame(updateScrollParallax);}},{passive:true});
 reducedMotion.addEventListener?.('change',updateScrollParallax);
 updateScrollParallax();
 
