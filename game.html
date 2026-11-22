@@ -24,7 +24,7 @@ document.getElementById('title').textContent=String(game.title||'بدون عنو
 document.getElementById('description').textContent=String(game.description||'');
 const img=document.getElementById('cover');
 if(game.imageUrl&&/^https:\/\//.test(game.imageUrl)){img.src=game.imageUrl;img.hidden=false}
-else if(game.imageBase64&&/^data:image\/(png|jpeg|webp);base64,/.test(game.imageBase64)){img.src=game.imageBase64;img.hidden=false}
+else if(game.imageBase64&&/^[A-Za-z0-9+/=\s]+$/.test(game.imageBase64)){img.src='data:image/jpeg;base64,'+game.imageBase64;img.hidden=false}
 const button=document.getElementById('download');
 content.hidden=false;status.hidden=true;
 let remaining=30;const tick=()=>{if(remaining<=0){button.textContent='تحميل اللعبة';button.href=url.href;button.target='_blank';button.rel='noopener noreferrer';button.removeAttribute('aria-disabled');return true}button.textContent='الرجاء الانتظار '+remaining+' ثانية';remaining--;return false};
