@@ -1,10 +1,10 @@
-// Public Firebase client configuration, sourced from the Android app build.
-// Firebase API keys are public identifiers, NOT administrator credentials.
-// Firestore security rules must enforce access control.
+// Public Firebase web app configuration. Access is enforced by Firestore security rules.
 export const firebaseConfig = {
-  "apiKey": "AIzaSyD-vMyULoJC3Xn-YvE5RuGXNPfK0hMSiac",
+  "apiKey": "AIzaSyB46dE3ua5CwtB1cMOSaB95pmo8NIIUJPE",
+  "authDomain": "omar-gaming-dfeef.firebaseapp.com",
   "projectId": "omar-gaming-dfeef",
-  "appId": "1:67019081745:android:41a6df8f1b62a4450549b0",
+  "storageBucket": "omar-gaming-dfeef.firebasestorage.app",
   "messagingSenderId": "67019081745",
-  "storageBucket": "omar-gaming-dfeef.firebasestorage.app"
+  "appId": "1:67019081745:web:26fb3d22ea4a35df0549b0",
+  "measurementId": "G-DCGKYD9RDQ"
 };
