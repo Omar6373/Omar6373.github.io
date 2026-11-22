@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#09090b"><title>تحميل اللعبة | OMAR STORE</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#09090b;color:#f8f8fa;font:16px/1.8 system-ui,sans-serif}header{border-bottom:1px solid #333;padding:15px 20px}header a{color:#ff792d;text-decoration:none;font-size:22px;font-weight:900}main{max-width:650px;margin:30px auto;padding:0 16px}.panel{background:#17171b;border:1px solid #303036;border-radius:20px;padding:22px}img{display:block;max-width:100%;max-height:360px;object-fit:contain;margin:auto;border-radius:14px}h1{margin:18px 0 4px;font-size:27px}.muted{color:#aaa}.description{white-space:pre-wrap;overflow-wrap:anywhere}button,a.download{display:block;width:100%;padding:13px 16px;background:#ff792d;color:#140c06;border:0;border-radius:12px;text-align:center;text-decoration:none;font:inherit;font-weight:800;margin-top:22px}a.download[aria-disabled=true]{background:#48484e;color:#ddd;pointer-events:none}#status{font-size:14px;color:#bbb}footer{text-align:center;color:#888;padding:25px;font-size:13px}</style></head>
+<body><header><a href="/">OMAR STORE</a></header><main><section class="panel"><p id="status" role="status">جارٍ تحميل تفاصيل اللعبة...</p><div id="content" hidden><img id="cover" alt="غلاف اللعبة" hidden><h1 id="title"></h1><p id="description" class="description muted"></p><p class="muted">سيصبح رابط التحميل متاحاً بعد انتهاء العدّاد.</p><a id="download" class="download" aria-disabled="true">الرجاء الانتظار 30 ثانية</a></div></section></main><footer>OMAR STORE</footer>
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import {getFirestore,doc,getDoc} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+import {firebaseConfig} from './firebase-public-config.js';
+const status=document.getElementById('status'), content=document.getElementById('content');
+const id=new URLSearchParams(location.search).get('id');
+if(!id||!/^[a-zA-Z0-9_-]{1,150}$/.test(id)){status.textContent='رابط اللعبة غير صحيح.'}
+else if(!firebaseConfig.apiKey||!firebaseConfig.projectId){status.textContent='ربط قاعدة بيانات الألعاب قيد الإعداد.'}
+else{
+try{
+const snap=await getDoc(doc(getFirestore(initializeApp(firebaseConfig)),'posts',id));
+if(!snap.exists())throw Error('not-found');
+const game=snap.data();const raw=String(game.url||'');
+const url=new URL(raw);
+if(!['https:','http:'].includes(url.protocol))throw Error('invalid-url');
+document.title=String(game.title||'اللعبة')+' | OMAR STORE';
+document.getElementById('title').textContent=String(game.title||'بدون عنوان');
+document.getElementById('description').textContent=String(game.description||'');
+const img=document.getElementById('cover');
+if(game.imageUrl&&/^https:\/\//.test(game.imageUrl)){img.src=game.imageUrl;img.hidden=false}
+else if(game.imageBase64&&/^data:image\/(png|jpeg|webp);base64,/.test(game.imageBase64)){img.src=game.imageBase64;img.hidden=false}
+const button=document.getElementById('download');
+content.hidden=false;status.hidden=true;
+let remaining=30;const tick=()=>{if(remaining<=0){button.textContent='تحميل اللعبة';button.href=url.href;button.target='_blank';button.rel='noopener noreferrer';button.removeAttribute('aria-disabled');return true}button.textContent='الرجاء الانتظار '+remaining+' ثانية';remaining--;return false};
+tick();const timer=setInterval(()=>{if(tick())clearInterval(timer)},1000);
+}catch(e){status.textContent=e.message==='not-found'?'اللعبة غير موجودة.':'تعذر جلب اللعبة. تأكد من اتصال الإنترنت وإعدادات الموقع.'}
+}
+</script></body></html>
