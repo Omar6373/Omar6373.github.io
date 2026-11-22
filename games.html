@@ -7,7 +7,7 @@ try{
 const db=getFirestore(initializeApp(firebaseConfig));
 const docs=await getDocs(query(collection(db,'posts'),where('type','==','game')));
 let count=0;
-docs.forEach(d=>{const x=d.data();const card=document.createElement('article');card.className='card';const img=document.createElement('img');img.alt='غلاف '+String(x.title||'اللعبة');let src=String(x.imageUrl||'');if(!src&&/^data:image\/(png|jpeg|webp);base64,/.test(String(x.imageBase64||'')))src=x.imageBase64;if(/^https:\/\//.test(src)||/^data:image\//.test(src)){img.src=src;img.loading='lazy';card.append(img)}const h=document.createElement('h2');h.textContent=String(x.title||'لعبة');card.append(h);const link=document.createElement('a');link.href='./game.html?id='+encodeURIComponent(d.id);link.textContent='عرض صفحة اللعبة';card.append(link);root.append(card);count++});
+docs.forEach(d=>{const x=d.data();const card=document.createElement('article');card.className='card';const img=document.createElement('img');img.alt='غلاف '+String(x.title||'اللعبة');let src=String(x.imageUrl||'');if(!src&&/^[A-Za-z0-9+/=\s]+$/.test(String(x.imageBase64||'')))src='data:image/jpeg;base64,'+x.imageBase64;if(/^https:\/\//.test(src)||/^data:image\//.test(src)){img.src=src;img.loading='lazy';card.append(img)}const h=document.createElement('h2');h.textContent=String(x.title||'لعبة');card.append(h);const link=document.createElement('a');link.href='./game.html?id='+encodeURIComponent(d.id);link.textContent='عرض صفحة اللعبة';card.append(link);root.append(card);count++});
 state.textContent=count?'عدد الألعاب: '+count:'لا توجد ألعاب منشورة حالياً.';
 }catch(e){state.textContent='تعذر تحميل الألعاب. راجع اتصال الإنترنت وصلاحيات قراءة Firestore.'}
 </script></body></html>
