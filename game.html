@@ -15,9 +15,10 @@ else{
 try{
 const snap=await getDoc(doc(getFirestore(initializeApp(firebaseConfig)),'posts',id));
 if(!snap.exists())throw Error('not-found');
-const game=snap.data();const raw=String(game.url||'');
+const game=snap.data();const raw=String(game.originalDownloadUrl||game.mediafireUrl||game.url||'');
 const url=new URL(raw);
 if(!['https:','http:'].includes(url.protocol))throw Error('invalid-url');
+if(url.hostname==='omar6373.github.io' || url.hostname==='www.omar6373.github.io')throw Error('loop-url');
 document.title=String(game.title||'اللعبة')+' | OMAR STORE';
 document.getElementById('title').textContent=String(game.title||'بدون عنوان');
 document.getElementById('description').textContent=String(game.description||'');
